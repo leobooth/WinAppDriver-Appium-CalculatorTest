@@ -1,4 +1,4 @@
-# WinAppDriver-CalculatorTest
+# WinAppDriver-Appium-CalculatorTest
 
 To run demo:
 1. Download and install WinAppDriver
