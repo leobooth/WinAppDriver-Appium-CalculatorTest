@@ -1,0 +1,14 @@
+# Maven
+target
+/target
+
+# IntelliJ
+*.iml
+*.ipr
+.idea
+.idea/
+/.idea
+
+# Test Suite
+#credentials.json
+#**/credentials.json
