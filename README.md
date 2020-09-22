@@ -1,6 +1,10 @@
 # WinAppDriver-Appium-CalculatorTest
 
-This test demonstrates how to automate a Windows desktop application using WinAppDriver locators and Appium image locators (findElementByImage).
+This test demonstrates how to automate a Windows desktop application.
+
+Examples show: 
+* how to use WinAppDriver locators 
+* how to use Appium image locators (findElementByImage).
 
 **Setup:**
 1. install node.js & npm
