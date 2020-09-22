@@ -6,6 +6,11 @@ Examples show:
 * how to use WinAppDriver locators 
 * how to use Appium image locators (findElementByImage).
 
+**To run demo:**
+1. start Appium Desktop
+1. in Appium Desktop, start server
+1. run AppiumCalculatorTest.java from your IDE (such as IntelliJ)
+
 **Setup:**
 1. install node.js & npm
 1. install opencv4nodejs
@@ -26,7 +31,3 @@ Examples show:
     1. (Settings / Updates & Security / For Developers / Developer Mode)
 1. download and install the most recent version of WinAppDriver (1.2 Release Candidate)
 1. download and install Appium Desktop
-
-**To run demo:**
-1. start Appium Server from Appium Desktop
-1. run AppiumCalculatorTest.java from your IDE (such as IntelliJ)
