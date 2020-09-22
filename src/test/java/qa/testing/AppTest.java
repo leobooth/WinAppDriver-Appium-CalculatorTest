@@ -1,4 +1,4 @@
-package org.automate;
+package qa.testing;
 
 import static org.junit.Assert.assertTrue;
 
