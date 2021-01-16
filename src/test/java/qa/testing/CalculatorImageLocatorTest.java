@@ -1,64 +1,39 @@
 package qa.testing;
 
-import static qa.testing.ProjectUtilities.PROJECT_HOME_DIRECTORY;
-import static qa.testing.ProjectUtilities.getBase64ReferenceImage;
+import static qa.testing.ProjectSettings.PROJECT_HOME_DIRECTORY;
+import static qa.testing.ProjectSettings.getBase64ReferenceImage;
+import static qa.testing.AppiumSetup.WINDOWS_DRIVER_SESSION;
 
-import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.windows.WindowsDriver;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class CalculatorImageLocatorTest {
 
-  private static AppiumDriverLocalService service;
-
-  private static WindowsDriver CalculatorSession = null;
   private static WebElement CalculatorResult = null;
 
   @BeforeClass
   public static void setup() {
-    service = AppiumDriverLocalService.buildDefaultService();
-    service.start();
-
-    try {
-      DesiredCapabilities capabilities = new DesiredCapabilities();
-      capabilities.setCapability("app", "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App");
-      capabilities.setCapability("platformName", "Windows");
-      capabilities.setCapability("deviceName", "WindowsPC");
-      capabilities.setCapability("ms:experimental-webdriver",true);
-      CalculatorSession = new WindowsDriver<>(service.getUrl(), capabilities);
-      CalculatorSession.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-
-      CalculatorResult = CalculatorSession.findElementByAccessibilityId("CalculatorResults");
-      Assert.assertNotNull(CalculatorResult);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    AppiumSetup.startWindowsDriverSession();
+    CalculatorResult = WINDOWS_DRIVER_SESSION.findElementByAccessibilityId("CalculatorResults");
+    Assert.assertNotNull(CalculatorResult);
   }
 
   @AfterClass
   public static void TearDown() {
-    if (CalculatorSession != null) {
-      CalculatorSession.quit();
-    }
-    CalculatorSession = null;
-    service.stop();
+    AppiumSetup.stopWindowsDriverSession();
   }
 
   @Test
   public void Addition() {
-    CalculatorSession.findElementByName("One").click();
-    CalculatorSession.findElementByName("Plus").click();
-    CalculatorSession.findElementByName("Seven").click();
-    CalculatorSession.findElementByName("Equals").click();
+    WINDOWS_DRIVER_SESSION.findElementByName("One").click();
+    WINDOWS_DRIVER_SESSION.findElementByName("Plus").click();
+    WINDOWS_DRIVER_SESSION.findElementByName("Seven").click();
+    WINDOWS_DRIVER_SESSION.findElementByName("Equals").click();
     Assert.assertEquals("8", FormatCalculatorResultsText());
   }
 
@@ -76,9 +51,9 @@ public class CalculatorImageLocatorTest {
       throw new NotFoundException("could not create base64 reference images");
     }
 
-    WebElement button1 = CalculatorSession.findElementByImage(base64Button1);
-    WebElement buttonPlus = CalculatorSession.findElementByImage(base64ButtonPlus);
-    WebElement buttonEquals = CalculatorSession.findElementByImage(base64ButtonEquals);
+    WebElement button1 = WINDOWS_DRIVER_SESSION.findElementByImage(base64Button1);
+    WebElement buttonPlus = WINDOWS_DRIVER_SESSION.findElementByImage(base64ButtonPlus);
+    WebElement buttonEquals = WINDOWS_DRIVER_SESSION.findElementByImage(base64ButtonEquals);
 
     button1.click();
     buttonPlus.click();
