@@ -23,6 +23,7 @@ public class AppiumCalculatorTest {
 
   private static WindowsDriver CalculatorSession = null;
   private static WebElement CalculatorResult = null;
+  private static String PROJECT_HOME_DIRECTORY = "PROJECT_HOME_DIRECTORY";
 
   public static URL getServiceUrl () {
     return service.getUrl();
@@ -81,9 +82,9 @@ public class AppiumCalculatorTest {
     String base64ButtonEquals = "";
 
     try {
-      base64Button1 = getBase64ReferenceImage("C:\\Users\\lbooth\\Documents\\Projects\\Demos\\WinAppDriver-Appium-CalculatorTest\\src\\main\\java\\qa\\testing\\button_1.png");
-      base64ButtonPlus = getBase64ReferenceImage("C:\\Users\\lbooth\\Documents\\Projects\\Demos\\WinAppDriver-Appium-CalculatorTest\\src\\main\\java\\qa\\testing\\button_plus.png");
-      base64ButtonEquals = getBase64ReferenceImage("C:\\Users\\lbooth\\Documents\\Projects\\Demos\\WinAppDriver-Appium-CalculatorTest\\src\\main\\java\\qa\\testing\\button_equals.png");
+      base64Button1 = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\button_1.png");
+      base64ButtonPlus = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\button_plus.png");
+      base64ButtonEquals = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\button_equals.png");
     } catch (IOException e) {
       throw new NotFoundException("could not create base64 reference images");
     }
