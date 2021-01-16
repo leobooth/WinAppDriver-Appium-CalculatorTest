@@ -7,7 +7,7 @@ import java.util.Base64;
 
 public class ProjectUtilities {
 
-  public static String PROJECT_HOME_DIRECTORY = "PROJECT_HOME_DIRECTORY";
+  public static String PROJECT_HOME_DIRECTORY = "D:\\SideProjects\\AppiumImageLocators";
 
   public static String getBase64ReferenceImage(String imagePath) throws IOException {
     File refImgFile = new File(imagePath);

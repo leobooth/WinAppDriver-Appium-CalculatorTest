@@ -15,7 +15,7 @@ import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class AppiumCalculatorTest {
+public class CalculatorImageLocatorTest {
 
   private static AppiumDriverLocalService service;
 
@@ -69,9 +69,9 @@ public class AppiumCalculatorTest {
     String base64ButtonEquals = "";
 
     try {
-      base64Button1 = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\button_1.png");
-      base64ButtonPlus = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\button_plus.png");
-      base64ButtonEquals = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\button_equals.png");
+      base64Button1 = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\imageLocators\\button_1.png");
+      base64ButtonPlus = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\imageLocators\\button_plus.png");
+      base64ButtonEquals = getBase64ReferenceImage(PROJECT_HOME_DIRECTORY + "\\src\\main\\java\\qa\\testing\\imageLocators\\button_equals.png");
     } catch (IOException e) {
       throw new NotFoundException("could not create base64 reference images");
     }
@@ -87,7 +87,7 @@ public class AppiumCalculatorTest {
     Assert.assertEquals("2", FormatCalculatorResultsText());
   }
 
-  protected String FormatCalculatorResultsText() {
+  private String FormatCalculatorResultsText() {
     // trim extra text and whitespace off of the display value
     return CalculatorResult.getText().replace("Display is", "").trim();
   }
