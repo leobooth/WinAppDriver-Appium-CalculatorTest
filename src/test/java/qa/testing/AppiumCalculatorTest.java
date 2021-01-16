@@ -1,16 +1,14 @@
 package qa.testing;
 
+import static qa.testing.ProjectUtilities.PROJECT_HOME_DIRECTORY;
+import static qa.testing.ProjectUtilities.getBase64ReferenceImage;
+
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.windows.WindowsDriver;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.NotFoundException;
@@ -23,11 +21,6 @@ public class AppiumCalculatorTest {
 
   private static WindowsDriver CalculatorSession = null;
   private static WebElement CalculatorResult = null;
-  private static String PROJECT_HOME_DIRECTORY = "PROJECT_HOME_DIRECTORY";
-
-  public static URL getServiceUrl () {
-    return service.getUrl();
-  }
 
   @BeforeClass
   public static void setup() {
@@ -40,7 +33,7 @@ public class AppiumCalculatorTest {
       capabilities.setCapability("platformName", "Windows");
       capabilities.setCapability("deviceName", "WindowsPC");
       capabilities.setCapability("ms:experimental-webdriver",true);
-      CalculatorSession = new WindowsDriver<>(getServiceUrl(), capabilities);
+      CalculatorSession = new WindowsDriver<>(service.getUrl(), capabilities);
       CalculatorSession.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
       CalculatorResult = CalculatorSession.findElementByAccessibilityId("CalculatorResults");
@@ -49,12 +42,6 @@ public class AppiumCalculatorTest {
     } catch (Exception e) {
       e.printStackTrace();
     }
-  }
-
-  @Before
-  public void Clear() {
-    CalculatorSession.findElementByName("Clear").click();
-    Assert.assertEquals("0", FormatCalculatorResultsText());
   }
 
   @AfterClass
@@ -103,10 +90,5 @@ public class AppiumCalculatorTest {
   protected String FormatCalculatorResultsText() {
     // trim extra text and whitespace off of the display value
     return CalculatorResult.getText().replace("Display is", "").trim();
-  }
-
-  public String getBase64ReferenceImage(String imagePath) throws IOException {
-    File refImgFile = new File(imagePath);
-    return Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
   }
 }
