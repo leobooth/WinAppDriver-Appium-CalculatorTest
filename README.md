@@ -1,6 +1,6 @@
 # WinAppDriver-Appium-CalculatorTest
 
-This test demonstrates how to automate a Windows desktop application.
+This test demonstrates how to automate a Windows desktop application using Appium, WinAppDriver, XPath, and OpenCV template image matching (similar to Sikuli).
 
 Examples show: 
 * how to use WinAppDriver locators 
